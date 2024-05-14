@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 import { usePinchScroll, useWheelScroll } from "./hooks.ts";
 
 const SCALE_FACTOR = 100;
-const MIN_SCALE = 1 / SCALE_FACTOR;
 
 const Container = styled.div`
   height: 100vh;
@@ -26,7 +25,7 @@ export const App = () => {
   const [scale, setScale] = useState(1);
 
   const setScaleFromDelta = (delta: number, isZoomIn: boolean) => {
-    setScale((s) => Math.max(MIN_SCALE, isZoomIn ? s * delta : s / delta));
+    setScale((s) => (isZoomIn ? s * delta : s / delta));
   };
 
   useWheelScroll(setScaleFromDelta);
